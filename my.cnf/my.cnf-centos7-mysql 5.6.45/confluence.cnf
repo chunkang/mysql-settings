@@ -1,0 +1,45 @@
+# Configured for Centos 7 and MySQL 5.6.45
+
+character-set-server = utf8
+collation-server = utf8_bin
+
+wait_timeout=28800 #28.800
+
+# Disabling symbolic-links is recommended to prevent assorted security risks
+symbolic-links=0
+
+# Recommended in standard MySQL setup
+sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES
+
+# Added to support Confluence
+default-storage-engine=INNODB
+sql_mode = NO_AUTO_VALUE_ON_ZERO
+transaction-isolation=READ-COMMITTED
+max_allowed_packet=256M
+
+max_connections = 10240					#max_open_files=10240
+#table_open_cache=10240
+binlog_format=row
+
+explicit_defaults_for_timestamp = TRUE
+
+innodb_buffer_pool_size = 10GB		# recommended to use 60-80% of whole RAM
+innodb_log_buffer_size = 128M		# default: 2M
+innodb_log_file_size = 2GB		# 20% of innodb_buffer_pool_size
+innodb_additional_mem_pool_size = 1024	# default: 16
+innodb_buffer_pool_instances=4
+innodb_flush_log_at_trx_commit = 0	# 0-once a sec / 1-realtime / 2-log for realtime, flush once a sec
+#innodb_flosh_method = O_DSYNC
+#innodb_lock_wait_timeout = 50
+#innodb_file_io_thread = 32		# default:10
+
+
+[mysqld_safe]
+log-error=/var/log/mysqld.log
+pid-file=/var/run/mysqld/mysqld.pid
+
+[client]
+default-character-set = utf8
+
+[mysql]
+default-character-set = utf8
